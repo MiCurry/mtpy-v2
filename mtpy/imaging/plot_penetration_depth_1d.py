@@ -93,8 +93,7 @@ class PlotPenetrationDepth1D(PlotBase):
 
         self.ax.set_ylim(self.set_period_limits(depth_array["period"])[::-1])
         self.fig.suptitle(
-            f"Depth of investigation for {self.tf.station}",
-            fontproperties=self.font_dict,
+            f"Depth of investigation for {self.tf.station}"
         )
 
         self.ax.grid(which="major", lw=0.75, ls="--", color=(0.25, 0.25, 0.25))
