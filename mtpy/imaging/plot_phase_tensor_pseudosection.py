@@ -475,3 +475,6 @@ class PlotPhaseTensorPseudoSection(PlotBaseProfile):
         self.ax.set_axisbelow(True)
 
         self._add_tipper_legend()
+
+        if self.show_plot:
+            plt.show()
