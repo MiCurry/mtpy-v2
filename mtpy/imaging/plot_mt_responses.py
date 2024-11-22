@@ -787,3 +787,6 @@ class PlotMultipleResponses(PlotBase):
             self._plot_compare()
         elif self.plot_style in [1, "1", "single"]:
             return self._plot_single()
+
+        if self.show_plot:
+            plt.show()
