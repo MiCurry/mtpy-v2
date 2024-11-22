@@ -374,11 +374,12 @@ class PlotPhaseTensor(PlotBase):
 
         try:
             self.fig.suptitle(
-                "Phase Tensor Elements for: " + self.station,
-                fontdict={"size": self.font_size + 3, "weight": "bold"},
+                "Phase Tensor Elements for: " + self.station
             )
         except:
             self.fig.suptitle(
-                'Phase Tensor Elements for Station "unknown"',
-                fontdict={"size": self.font_size + 3, "weight": "bold"},
+                'Phase Tensor Elements for Station "unknown"'
             )
+
+        if self.show_plot:
+            plt.show()
