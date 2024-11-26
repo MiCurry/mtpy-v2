@@ -123,7 +123,10 @@ class MTStations:
             "north",
             "utm_epsg",
         ]:
-            l.append(f"{getattr(self.center_point, n):{fmt_dict[n]}}")
+            if getattr(self.center_point, n) is None:
+                continue
+            else:
+                l.append(f"{getattr(self.center_point, n):{fmt_dict[n]}}")
         lines.append("".join(l))
 
         lines.append("\nMean Values:")
