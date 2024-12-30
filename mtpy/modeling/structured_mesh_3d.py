@@ -482,10 +482,10 @@ class StructuredGrid3D:
         north = self.station_locations.model_north.max() + pad_width_north
 
         # round the numbers so they are easier to read
-        west = np.round(west, -2)
-        east = np.round(east, -2)
-        south = np.round(south, -2)
-        north = np.round(north, -2)
+        west = np.round(west, 2)
+        east = np.round(east, 2)
+        south = np.round(south, 2)
+        north = np.round(north, 2)
 
         # -------make a grid around the stations from the parameters above------
 
