@@ -830,3 +830,7 @@ class PlotPhaseTensorMaps(PlotBaseMaps):
         elif self.pt_type == "wedges" and self.plot_pt:
             self._add_colorbar_wedges()
         self._add_tipper_legend()
+
+
+        if self.show_plot:
+            plt.show()

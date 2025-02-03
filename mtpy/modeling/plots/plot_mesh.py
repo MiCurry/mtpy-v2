@@ -27,11 +27,11 @@ class PlotMesh(PlotBase):
         self.plot_station_id = False
         self.plot_topography = True
         self.z_limits = None
+        self.fname = None
 
         super().__init__(**kwargs)
 
-        if self.show_plot:
-            self.plot()
+        self.plot(fname=self.fname)
 
     def _plot_topography(self):
         """Plot topography if asked.
@@ -106,7 +106,7 @@ class PlotMesh(PlotBase):
 
         self.ax2.pcolormesh(x, y, plot_topo)
 
-    def plot(self):
+    def plot(self, fname=None):
         """Plot the mesh to show model grid.
 
         Arguments::
@@ -305,4 +305,7 @@ class PlotMesh(PlotBase):
 
         self.fig.tight_layout()
 
-        plt.show()
+        if fname is None:
+            plt.show()
+        else:
+            plt.savefig(fname)

@@ -613,10 +613,11 @@ class StructuredGrid3D:
 
         # compute grid center
         center_east = np.round(
-            self.grid_east.min() - self.grid_east.mean(), -1
+            self.grid_east.min(), -1
         )
+
         center_north = np.round(
-            self.grid_north.min() - self.grid_north.mean(), -1
+            self.grid_north.min(), -1
         )
         center_z = 0
 
@@ -824,19 +825,7 @@ class StructuredGrid3D:
         )
 
         # write the resistivity in log e format
-        if self.res_scale.lower() == "loge":
-            write_res_model = np.log(self.res_model[::-1, :, :])
-        elif (
-            self.res_scale.lower() == "log"
-            or self.res_scale.lower() == "log10"
-        ):
-            write_res_model = np.log10(self.res_model[::-1, :, :])
-        elif self.res_scale.lower() == "linear":
-            write_res_model = self.res_model[::-1, :, :]
-        else:
-            raise ValueError(
-                f'resistivity scale "{self.res_scale}" is not supported.'
-            )
+        write_res_model = self.res_model[::-1, :, :]
 
         # write out the layers from resmodel
         for zz in range(self.nodes_z.size):
@@ -1000,6 +989,7 @@ class StructuredGrid3D:
             self.grid_center = np.array(
                 [-self.nodes_north.sum() / 2, -self.nodes_east.sum() / 2, 0.0]
             )
+
 
         # need to shift the grid if the center is not symmetric
         # use the grid centre from the model file

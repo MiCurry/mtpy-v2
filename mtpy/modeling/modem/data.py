@@ -735,7 +735,8 @@ class Data:
                     value_list = [
                         float(value) for value in hline[1:].strip().split()
                     ]
-                    if value_list[0] != 0.0:
+
+                    if value_list[1] != 0.0:
                         self.center_point.latitude = value_list[0]
                     if value_list[1] != 0.0:
                         self.center_point.longitude = value_list[1]

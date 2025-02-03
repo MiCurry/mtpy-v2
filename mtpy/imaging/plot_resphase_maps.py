@@ -424,3 +424,6 @@ class PlotResPhaseMaps(PlotBaseMaps):
                     ax.set_xlabel("Longitude (deg)", fontdict=self.font_dict)
         # Plot title
         self.fig.suptitle(f"Plot Period: {self.plot_period:.5g} s", y=0.985)
+
+        if self.show_plot:
+            plt.show()
