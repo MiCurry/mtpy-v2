@@ -125,6 +125,17 @@ class Data:
             "real",
             "imag",
             "error",
+            "hxazi",
+            "hyazi",
+            "exazi",
+            "eyazi"
+        ]
+
+        self._optional_df_keys = [
+            "hxazi",
+            "hyazi",
+            "exazi",
+            "eyazi"
         ]
 
         for key, value in kwargs.items():
@@ -849,7 +860,15 @@ class Data:
             "real",
             "imag",
             "error",
+            "hxazi",
+            "hyazi",
+            "exazi",
+            "eyazi",
         ]:
+            if (key in ["hxazi", "hyazi", "exazi", "eyazi"]) and (key not in line_dict):
+                # ModEM Azimuth is optional, and appears in ModEM output files
+                continue
+
             line_dict[key] = float(line_dict[key])
 
         comp = line_dict.pop("comp").lower()
@@ -906,8 +925,8 @@ class Data:
         for dline in dlines:
             if "#" in dline or ">" in dline:
                 continue
-
-            elif len(dline.split()) == len(self._df_keys):
+            elif ((len(dline.split()) >= len(self._df_keys) - len(self._optional_df_keys))
+                    and (len(dline.split()) <= len(self._df_keys))):
                 line_dict = self._read_line(dline)
                 entries.append(line_dict)
 
@@ -941,6 +960,14 @@ class Data:
                 col_dict[col] = col.replace("t", "t_")
             elif col.startswith("pt"):
                 col_dict[col] = col.replace("pt", "pt_")
+            elif col.startswith("hx"):
+                col_dict[col] = col.replace("hx", "hx_")
+            elif col.startswith("hy"):
+                col_dict[col] = col.replace("hy", "hy_")
+            elif col.startswith("ex"):
+                col_dict[col] = col.replace("ex", "ex_")
+            elif col.startswith("ey"):
+                col_dict[col] = col.replace("ey", "ey_")
             else:
                 continue
 
